@@ -26,4 +26,6 @@
     <string name="clos">clos</string>
     <string name="date_clos">date_clos</string>
     <string name="voir_ticket">voir ticket</string>
+    <string name="commentaire">Entrez votre commentaire ici</string>
+    <string name="button_commentaire">Envoyer</string>
 </resources>
