@@ -21,6 +21,7 @@
             android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
+            android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avatar" />
@@ -30,14 +31,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/mot_de_passe"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mail"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/mail" />
 
         <Button
             android:id="@+id/buttonConnexion"
@@ -60,5 +62,17 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck"
             android:src="@drawable/homme" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="304dp"
+            android:layout_height="62dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/logo_cottonticket"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ImageContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

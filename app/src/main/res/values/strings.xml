@@ -15,4 +15,6 @@
     <string name="mot_de_passe">Mot de Passe</string>
     <string name="connexion">Connexion</string>
     <string name="avatar_icone">avatar icone</string>
+    <string name="logo_cottonticket">logo_cottonTicket</string>
+    <string name="todo">TODO</string>
 </resources>
