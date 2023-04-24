@@ -20,4 +20,10 @@
     <string name="creation_ticket_pedagogique">Ticket \n pédagogique</string>
     <string name="textHome">TextView</string>
     <string name="titleHome">Dépot de Ticket</string>
+    <string name="id_ticket">id_ticket</string>
+    <string name="date_ouverture">date_ouverture</string>
+    <string name="resolution">resolution</string>
+    <string name="clos">clos</string>
+    <string name="date_clos">date_clos</string>
+    <string name="voir_ticket">voir ticket</string>
 </resources>
