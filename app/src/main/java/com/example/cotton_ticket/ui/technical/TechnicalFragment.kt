@@ -1,4 +1,4 @@
-package com.example.cotton_ticket.ui.slideshow
+package com.example.cotton_ticket.ui.technical
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.cotton_ticket.databinding.FragmentSlideshowBinding
+import com.example.cotton_ticket.databinding.FragmentTechnicalBinding
 
-class SlideshowFragment : Fragment() {
+class TechnicalFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentTechnicalBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class SlideshowFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-                ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        val technicalViewModel =
+                ViewModelProvider(this).get(TechnicalViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentTechnicalBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
+        technicalViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

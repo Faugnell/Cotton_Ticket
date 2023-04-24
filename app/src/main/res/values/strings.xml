@@ -16,4 +16,8 @@
     <string name="connexion">Connexion</string>
     <string name="avatar_icone">avatar icone</string>
     <string name="logo_cottonticket">logo_cottonTicket</string>
+    <string name="creation_ticket_technique">Ticket \n Technique</string>
+    <string name="creation_ticket_pedagogique">Ticket \n pédagogique</string>
+    <string name="textHome">TextView</string>
+    <string name="titleHome">Dépot de Ticket</string>
 </resources>
