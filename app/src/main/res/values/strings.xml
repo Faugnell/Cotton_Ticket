@@ -28,4 +28,18 @@
     <string name="voir_ticket">voir ticket</string>
     <string name="commentaire">Entrez votre commentaire ici</string>
     <string name="button_commentaire">Envoyer</string>
+    <string name="question1">Niveau d\'urgence</string>
+    <string name="reponse1">Niveau d\'urgence</string>
+    <string name="question2">Compétences visées</string>
+    <string name="reponse2">Compétences visées</string>
+    <string name="question3">Tâche à accomplir</string>
+    <string name="reponse3">Tâche à accomplir</string>
+    <string name="question4">Récapitulatif du travail à fournir</string>
+    <string name="reponse4">Récapitulatif du travail à fournir</string>
+    <string name="question5">Difficultés rencontrées</string>
+    <string name="reponse5">Difficultés rencontrées</string>
+    <string name="question6">Hypothèses émises</string>
+    <string name="reponse6">Hypothèses émises</string>
+    <string name="question7">Demande précise d\'aide</string>
+    <string name="reponse7">Demande précise d\'aide</string>
 </resources>
