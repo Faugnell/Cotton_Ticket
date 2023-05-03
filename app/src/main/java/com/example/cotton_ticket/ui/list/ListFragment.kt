@@ -1,6 +1,8 @@
 package com.example.cotton_ticket.ui.list
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,25 +34,22 @@ class ListFragment : Fragment() {
         val root: View = binding.root
         val cardView = binding.cardView
 
-        apiService.lire_ticket()?.enqueue(object : Callback<List<Ticket>> {
-            override fun onResponse(call: Call<List<Ticket>>, response: Response<List<Ticket>>) {
-                val ticketList = response.body()
-                // Afficher les données dans la liste de cards
-
-                // Création d'un tableau Int pour la cardView
-                val tickets = arrayOfNulls<Int>(ticketList!!.size)
-
-                // Boucle de tout les tickets et mettre l'id dans le tableau
-                for (i in ticketList.indices) {
-                    tickets[i] = ticketList[i].id_ticket
+        apiService.lire_ticket(id_utilisateur = 1)?.enqueue(object : Callback<Ticket> {
+            override fun onResponse(call: Call<Ticket>, response: Response<Ticket>) {
+                if (response.isSuccessful) {
+                    val ticket = response.body()
+                    if (ticket != null) {
+                        Log.d(TAG, "Le ticket à pu être récupéré")
+                    } else {
+                        Log.e(TAG, "Corps de la réponse vide")
+                    }
+                } else {
+                    Log.e(TAG, "Réponse non réussie")
                 }
-
-                // Afficher le tableau dans la cardView
-
             }
 
-            override fun onFailure(call: Call<List<Ticket>>, t: Throwable) {
-                // Gérer l'erreur de récupération des données
+            override fun onFailure(call: Call<Ticket>, t: Throwable) {
+                Log.e(TAG, "Échec de la requête: ${t.message}")
             }
         })
 
@@ -62,6 +61,4 @@ class ListFragment : Fragment() {
         _binding = null
     }
 
-
 }
-

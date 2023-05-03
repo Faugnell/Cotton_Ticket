@@ -5,6 +5,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("id_utilisateur")
-    fun lire_ticket(): Call<List<Ticket>>
+    @GET("ticket/lire.php")
+    fun lire_ticket(@Query("id_utilisateur") id_utilisateur: Int): Call<Ticket>
 }

@@ -1,12 +1,18 @@
 package com.example.cotton_ticket.models
 
-import java.sql.Date
+import com.google.gson.annotations.SerializedName
 
 data class Ticket(
-    val id_utilisateur: Int? = null,
-    val id_ticket: Int? = null,
-    val date_ouverture: Date? = null,
-    val resolution: String? = null,
-    val clos: Int? = null,
-    val date_clos: Date? = null
+    @SerializedName("id_ticket")
+    val idTicket: Int,
+    @SerializedName("id_utilisateur")
+    val idUtilisateur: Int,
+    @SerializedName("date_ouverture")
+    val dateOuverture: String,
+    @SerializedName("resolution")
+    val resolution: String?,
+    @SerializedName("clos")
+    val clos: Int,
+    @SerializedName("date_clos")
+    val dateClos: String?
 )
