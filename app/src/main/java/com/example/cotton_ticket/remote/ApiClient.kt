@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL:String = "http://slam.cipecma.net/2123/vpetit/api/"
+    private const val BASE_URL:String = "https://slam.cipecma.net/2123/vpetit/api/"
 
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
