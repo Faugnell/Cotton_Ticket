@@ -3,16 +3,16 @@ package com.example.cotton_ticket.models
 import com.google.gson.annotations.SerializedName
 
 data class Ticket(
-    @SerializedName("id_ticket")
+    @SerializedName(value = "id_ticket")
     val idTicket: Int,
-    @SerializedName("id_utilisateur")
+    @SerializedName(value = "id_utilisateur")
     val idUtilisateur: Int,
-    @SerializedName("date_ouverture")
+    @SerializedName(value = "date_ouverture")
     val dateOuverture: String,
-    @SerializedName("resolution")
+    @SerializedName(value = "resolution")
     val resolution: String?,
-    @SerializedName("clos")
+    @SerializedName(value = "clos")
     val clos: Int,
-    @SerializedName("date_clos")
+    @SerializedName(value = "date_clos")
     val dateClos: String?
 )
