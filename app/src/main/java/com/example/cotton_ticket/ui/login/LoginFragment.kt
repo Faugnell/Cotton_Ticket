@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.cotton_ticket.MainActivity
 import com.example.cotton_ticket.StartActivity
 import com.example.cotton_ticket.databinding.FragmentLoginBinding
+import com.example.cotton_ticket.models.MyGlobal
 
 @Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
@@ -56,44 +57,43 @@ class LoginFragment : Fragment() {
         return root
     }
 
-    private fun connexion(){
+    private fun connexion() {
         val mail = binding.mail.text.toString()
         val password = binding.password.text.toString()
-        fetchData(mail,password)
-        requireActivity().run{
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+
+        fetchData(mail, password)
     }
 
-    fun fetchData( username: String, password : String){
-        //val url = "https://api.jeremysabbah.com/trainers/exist.php?mail=${username}&password=${password}"
-        val url = "https://slam.cipecma.net/2123/vpetit/api/utilisateur/connexion.php?mail=cyriac.picart@gmail.com&password=mdp123"
+    fun fetchData(username: String, password: String) {
+        //val url = "https://slam.cipecma.net/2123/vpetit/api/utilisateur/connexion.php?mail=$username&password=$password"
+        val url = "https://slam.cipecma.net/2123/vpetit/api/utilisateur/connexion.php?mail=victor.petit@gmail.com&password=mdp123!!"
 
-        Toast.makeText(requireActivity(), url , Toast.LENGTH_SHORT).show();
+        Log.i("LoginFragment URL", url)
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
-            //if(response.get("Response")=="False"){
-            // Toast.makeText(requireActivity(), "A" ,Toast.LENGTH_SHORT).show();
 
-            //Toast.makeText(requireActivity(), response.getString("message") ,Toast.LENGTH_SHORT).show();
-            //}else {
-
-                Toast.makeText(requireActivity(), "Connexion réussi" , Toast.LENGTH_SHORT).show();
-                //Toast.makeText(requireActivity(), response.getString("id_user") , Toast.LENGTH_SHORT).show();
-                val intent = Intent(requireActivity(), StartActivity::class.java)
-                Log.i("LoginFragment Intent Username", response.getString("message"))
-                /*requireActivity().run{
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-                }*/
-            //}
+                val idUtilisateur = response.optInt("id_utilisateur")
+                MyGlobal.utilisateur.id_utilisateur = idUtilisateur
+                val message = response.optString("message")
+                // Gérer la réponse en cas de succès
+                if (idUtilisateur != 0 && message.isNotEmpty()) {
+                    Toast.makeText(requireActivity(), "Connexion réussie", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireActivity(), StartActivity::class.java)
+                    requireActivity().run {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+                } else {
+                    // Gérer la réponse en cas d'échec
+                    Toast.makeText(requireActivity(), "Connexion échouée", Toast.LENGTH_SHORT).show()
+                }
             },
             { error ->
-                Log.d("vol",error.toString())
-                Toast.makeText(requireActivity(), "Connexion échouée" , Toast.LENGTH_SHORT).show();
+                // Gérer l'erreur en cas d'échec de la requête
+                Log.d("vol", error.toString())
+                Toast.makeText(requireActivity(), "Connexion échouée", Toast.LENGTH_SHORT).show()
             }
         )
         requestQueue.add(jsonObjectRequest)

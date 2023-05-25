@@ -13,9 +13,9 @@
             android:icon="@drawable/icons8_ticket_100"
             android:title="@string/menu_ticket" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow"
-            android:visible="false" />
+            android:id="@+id/nav_deconnection"
+            android:icon="@drawable/se_deconnecter"
+            android:title="@string/deconnection"
+            android:visible="true" />
     </group>
 </menu>

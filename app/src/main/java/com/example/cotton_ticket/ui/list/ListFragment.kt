@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.cotton_ticket.data.TicketRepository
 import com.example.cotton_ticket.databinding.FragmentListBinding
+import com.example.cotton_ticket.ui.home.HomeViewModel
 
 class ListFragment() : Fragment() {
 
@@ -18,21 +18,21 @@ class ListFragment() : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    fun onCreateView(
+    override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?,
-            ticketRepository: TicketRepository
     ): View {
-        val listViewModel =
-            ViewModelProvider(this).get(ListViewModel::class.java)
+        val ListViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val textViewTicket: TextView = binding.textViewTicket
-        textViewTicket.text = "bonjour"
+        ListViewModel.text.observe(viewLifecycleOwner) {
+            textViewTicket.text = it
+        }
         try {
-            val listTicket = ticketRepository.lire_ticket()
-            textViewTicket.text = "${listTicket.size} récupéré"
+
         }
         catch (e : Exception){
             textViewTicket.text = "${e.message}"

@@ -42,4 +42,5 @@
     <string name="reponse6">Hypothèses émises</string>
     <string name="question7">Demande précise d\'aide</string>
     <string name="reponse7">Demande précise d\'aide</string>
+    <string name="deconnection">Se déconnecter</string>
 </resources>
