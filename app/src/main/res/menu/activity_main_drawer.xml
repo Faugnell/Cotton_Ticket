@@ -16,6 +16,6 @@
             android:id="@+id/nav_deconnection"
             android:icon="@drawable/se_deconnecter"
             android:title="@string/deconnection"
-            android:visible="true" />
+            android:visible="false" />
     </group>
 </menu>
