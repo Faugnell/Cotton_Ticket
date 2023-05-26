@@ -43,4 +43,11 @@
     <string name="question7">Demande précise d\'aide</string>
     <string name="reponse7">Demande précise d\'aide</string>
     <string name="deconnection">Se déconnecter</string>
+    <string name="textType">Type de question</string>
+    <string-array name="type_array">
+        <item>Defaut</item>
+        <item>Espace collaboratif</item>
+        <item>Solution erp</item>
+        <item>Plateforme elearning</item>
+    </string-array>
 </resources>

@@ -14,9 +14,10 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.BasicNetwork
 import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
-import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonArrayRequest
 import com.example.cotton_ticket.databinding.FragmentListBinding
 import com.example.cotton_ticket.models.MyGlobal
+import com.example.cotton_ticket.models.Ticket
 
 class ListFragment() : Fragment() {
 
@@ -45,9 +46,22 @@ class ListFragment() : Fragment() {
         val textViewTicket: TextView = binding.textViewTicket
 
         try {
-            fetchData(MyGlobal.utilisateur.id_utilisateur)
-            ListViewModel.text.observe(viewLifecycleOwner) {
-                textViewTicket.text = it
+            fetchData(MyGlobal.utilisateur.id_utilisateur) { tickets ->
+                if (tickets != null) {
+                    // Récupération réussie, utilisez la liste de tickets
+                    val ticketText = StringBuilder()
+                    for (ticket in tickets) {
+                        ticketText.append("ID du ticket: ${ticket.idTicket}\n")
+                        ticketText.append("Date d'ouverture: ${ticket.dateOuverture}\n")
+                        ticketText.append("Résolution: ${ticket.resolution}\n")
+                        ticketText.append("Clos: ${ticket.clos}\n")
+                        ticketText.append("Date de clôture: ${ticket.dateClos}\n\n")
+                    }
+                    // Utilisez ticketText comme vous le souhaitez
+                } else {
+                    // Récupération échouée
+                    Toast.makeText(requireActivity(), "Récupération échouée", Toast.LENGTH_SHORT).show()
+                }
             }
         }
         catch (e : Exception){
@@ -57,29 +71,39 @@ class ListFragment() : Fragment() {
         return root
     }
 
-    fun fetchData(idUtilisateur: Int?) {
+    fun fetchData(idUtilisateur: Int?, callback: (List<Ticket>?) -> Unit) {
         val url = "https://slam.cipecma.net/2123/vpetit/api/ticket/lire.php?id_utilisateur=$idUtilisateur"
 
         Log.i("ListFragment URL", url)
 
-        val jsonObjectRequest = JsonObjectRequest(
+        val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response ->
+                val ticketList = mutableListOf<Ticket>()
 
-                if(response != null){
-                    Toast.makeText(requireActivity(), "Récupération réussie", Toast.LENGTH_SHORT).show()
-                } else {
-                    // Gérer la réponse en cas d'échec
-                    Toast.makeText(requireActivity(), "Récupération échouée", Toast.LENGTH_SHORT).show()
+                for (i in 0 until response.length()) {
+                    val ticketObj = response.getJSONObject(i)
+                    val idUtilisateur = ticketObj.optInt("id_utilisateur")
+                    val idTicket = ticketObj.optInt("id_ticket")
+                    val dateOuverture = ticketObj.optString("date_ouverture")
+                    val resolution = ticketObj.optString("resolution")
+                    val clos = ticketObj.optInt("clos")
+                    val dateClos = ticketObj.optString("date_clos")
+
+                    val ticket = Ticket(idUtilisateur, idTicket, dateOuverture, resolution, clos, dateClos)
+                    ticketList.add(ticket)
                 }
+
+                // Appeler le callback avec la liste de tickets
+                callback(ticketList)
             },
             { error ->
                 // Gérer l'erreur en cas d'échec de la requête
                 Log.d("vol", error.toString())
-                Toast.makeText(requireActivity(), "Récupération échouée", Toast.LENGTH_SHORT).show()
+                callback(null)
             }
         )
-        requestQueue.add(jsonObjectRequest)
+        requestQueue.add(jsonArrayRequest)
     }
 
     override fun onDestroyView() {

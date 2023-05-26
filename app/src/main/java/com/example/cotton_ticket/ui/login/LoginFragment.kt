@@ -75,6 +75,7 @@ class LoginFragment : Fragment() {
             { response ->
 
                 val idUtilisateur = response.optInt("id_utilisateur")
+                Log.i("Login", idUtilisateur.toString())
                 MyGlobal.utilisateur.id_utilisateur = idUtilisateur
                 val message = response.optString("message")
                 // Gérer la réponse en cas de succès

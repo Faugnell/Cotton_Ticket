@@ -4,6 +4,7 @@ import android.app.Application
 
 class MyGlobal : Application() {
     companion object {
-        var utilisateur : Utilisateur = Utilisateur()
+        var utilisateur: Utilisateur = Utilisateur()
+        var ticket: Ticket = Ticket()
     }
 }
