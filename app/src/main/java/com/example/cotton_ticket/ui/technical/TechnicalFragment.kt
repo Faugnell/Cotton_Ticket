@@ -78,12 +78,12 @@ class TechnicalFragment : Fragment() {
         sendPutRequest(editTextCommentaire, idUtilisateur, idTypeTechnique)
     }
 
-    private fun sendPutRequest(editTextCommentaire: String, idUtilisateur: Int?, idTypeTechnique: Int) {
+    private fun sendPutRequest(editTextCommentaire: String, idUtilisateur: Int, idTypeTechnique: Int) {
         val url = "https://slam.cipecma.net/2123/vpetit/api/ticket-technique/ajouter.php"
         val jsonObject = JSONObject()
         try {
             jsonObject.put("commentaire", editTextCommentaire)
-            jsonObject.put("id_utilisateur", idUtilisateur)
+            idUtilisateur?.let { jsonObject.put("id_utilisateur", it.toString()) }
             jsonObject.put("id_type", idTypeTechnique)
         } catch (e: JSONException) {
             Log.i("json_error", "$e")
@@ -106,11 +106,6 @@ class TechnicalFragment : Fragment() {
                     headers["Content-Type"] = "application/json"
                     headers["Accept"] = "application/json"
                     return headers
-                }
-
-                override fun getBody(): ByteArray {
-                    Log.i("json", jsonObject.toString())
-                    return jsonObject.toString().toByteArray(charset("UTF-8"))
                 }
             }
 

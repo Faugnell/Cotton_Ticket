@@ -72,7 +72,7 @@ class PedagogyFragment : Fragment() {
         editTextRep5: String,
         editTextRep6: String,
         editTextRep7: String,
-        idUtilisateur: Int?
+        idUtilisateur: Int
     ) {
         val url = "https://slam.cipecma.net/2123/vpetit/api/ticket-pedagogique/ajouter.php"
         val jsonObject = JSONObject()

@@ -1,10 +1,11 @@
 package com.example.cotton_ticket.models
 
 data class Ticket(
-    val idUtilisateur: Int? = null,
-    val idTicket: Int? = null,
-    val dateOuverture: String? = null,
-    val resolution: String? = null,
-    val clos: Int? = null,
-    val dateClos: String? = null
+    val id_ticket: Int,
+    val id_ticket_p: Int,
+    val id_ticket_t: Int,
+    val date_ouverture: String,
+    val resolution: String,
+    val clos: Boolean,
+    val date_clos: String
 )
