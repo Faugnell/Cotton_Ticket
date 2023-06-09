@@ -44,6 +44,7 @@
     <string name="reponse7">Demande précise d\'aide</string>
     <string name="deconnection">Se déconnecter</string>
     <string name="textType">Type de question</string>
+    <string name="buttonModifier">Modifier</string>
     <string-array name="type_array">
         <item>Defaut</item>
         <item>Espace collaboratif</item>
