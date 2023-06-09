@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -54,7 +55,6 @@ class ListFragment : Fragment() {
         requestQueue = RequestQueue(appcache, appnetwork).apply {
             start()
         }
-
         return root
     }
 
@@ -113,7 +113,18 @@ class ListFragment : Fragment() {
         closTextView.text = "Clos: $clos"
         dateClosTextView.text = "Date de clôture: $dateClos"
 
+        val modifyButton = cardView.findViewById<Button>(R.id.button)
+        modifyButton.setOnClickListener {
+            // Action de modification du ticket
+            modifierTicket(idTicket)
+        }
+
         return cardView
+    }
+
+    private fun modifierTicket(idTicket: Int) {
+        // Code pour modifier le ticket avec l'ID spécifié
+        // Vous pouvez utiliser l'ID du ticket pour effectuer une requête de modification, mettre à jour les données, etc.
     }
 
     override fun onDestroyView() {
